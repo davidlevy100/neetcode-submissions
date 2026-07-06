@@ -1,0 +1,34 @@
+public class Solution {
+    public bool IsAnagram(string s, string t)
+{
+    if (s.Length != t.Length)
+        return false;
+
+    var count = new Dictionary<char, int>();
+
+    foreach (char c in s)
+    {
+        if (count.ContainsKey(c))
+            count[c]++;
+        else
+            count[c] = 1;
+    }
+
+    foreach (char c in t)
+    {
+        if (!count.ContainsKey(c))
+            return false;
+
+        count[c]--;
+    }
+
+    foreach (var kvp in count)
+    {
+        if (kvp.Value != 0)
+            return false;
+    }
+
+    return true;
+}
+
+}
